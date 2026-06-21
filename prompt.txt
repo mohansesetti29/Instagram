@@ -1,0 +1,682 @@
+Build a 100% pixel-perfect Instagram frontend clone using React.js. Every single page that exists on Instagram must be built. No placeholders, no TODOs, every screen complete.
+
+## Tech Stack
+- React.js with Vite
+- React Router DOM v6
+- Tailwind CSS
+- Axios + React Query
+- Lucide React (icons)
+- Framer Motion (animations)
+- Images: https://picsum.photos/600/600?random={id}
+- Avatars: https://i.pravatar.cc/150?img={id}
+
+---
+
+## ALL PAGES & ROUTES (Complete List)
+
+### AUTH PAGES
+- /                      → Login Page
+- /accounts/login        → Login Page
+- /accounts/signup       → Sign Up Page (multi-step)
+- /accounts/password/reset → Forgot Password Page
+- /accounts/emailsignup  → Email Sign Up
+- /accounts/otp          → OTP Verification Page
+
+### MAIN APP PAGES
+- /home                  → Home Feed
+- /explore               → Explore / Search
+- /reels                 → Reels Feed
+- /messages              → Messages (Inbox)
+- /messages/:conversationId → Open Chat
+- /messages/requests     → Message Requests
+- /notifications         → Notifications
+- /create                → Create Post (modal/page)
+
+### PROFILE PAGES
+- /:username             → User Profile
+- /:username/followers   → Followers List Modal
+- /:username/following   → Following List Modal
+- /:username/tagged      → Tagged Posts Tab
+- /profile/edit          → Edit Profile Page
+- /profile/edit/username → Edit Username
+- /profile/edit/bio      → Edit Bio
+- /accounts/password/change → Change Password Page
+
+### POST PAGES
+- /p/:postId             → Single Post Page (full view)
+- /p/:postId/liked_by    → Post Liked By Modal
+- /p/:postId/comments    → Comments Page (mobile)
+
+### STORIES PAGES
+- /stories/:username/:storyId → Stories Viewer (full screen)
+- /stories/archive       → Stories Archive
+- /stories/highlights/new → Create Highlight
+
+### REELS PAGES
+- /reels/:reelId         → Single Reel View
+- /reels/upload          → Upload Reel Page
+
+### EXPLORE PAGES
+- /explore               → Explore Grid
+- /explore/search        → Search Results
+- /explore/tags/:hashtag → Hashtag Page (#travel, #food etc)
+- /explore/locations/:id → Location Page
+- /explore/people        → People Suggestions
+
+### SETTINGS PAGES
+- /accounts/settings              → Settings Home
+- /accounts/settings/profile      → Profile Settings
+- /accounts/settings/privacy      → Privacy Settings
+- /accounts/settings/security     → Security Settings
+- /accounts/settings/notifications → Notification Settings
+- /accounts/settings/payments     → Payments
+- /accounts/settings/help         → Help Center
+- /accounts/settings/about        → About
+- /accounts/settings/login-activity → Login Activity
+- /accounts/settings/blocked      → Blocked Accounts
+- /accounts/settings/close-account → Deactivate/Delete Account
+
+### LIVE & SPECIAL PAGES
+- /live/:username        → Live Stream Page
+- /fundraiser/:id        → Fundraiser Page
+- /shop                  → Instagram Shop (grid)
+- /tv/:videoId           → IGTV Video Page
+
+### ERROR & UTILITY PAGES
+- /404                   → Page Not Found
+- /accounts/suspended    → Account Suspended
+- /challenge             → Verification Challenge
+
+---
+
+## PROJECT STRUCTURE
+
+src/
+  pages/
+    auth/
+      LoginPage.jsx
+      SignupPage.jsx
+      ForgotPasswordPage.jsx
+      OTPPage.jsx
+    feed/
+      HomePage.jsx
+    explore/
+      ExplorePage.jsx
+      SearchResultsPage.jsx
+      HashtagPage.jsx
+      LocationPage.jsx
+      PeoplePage.jsx
+    reels/
+      ReelsPage.jsx
+      SingleReelPage.jsx
+      UploadReelPage.jsx
+    messages/
+      MessagesPage.jsx
+      ChatPage.jsx
+      MessageRequestsPage.jsx
+    notifications/
+      NotificationsPage.jsx
+    profile/
+      ProfilePage.jsx
+      EditProfilePage.jsx
+      FollowersPage.jsx
+      FollowingPage.jsx
+      ChangePasswordPage.jsx
+    post/
+      SinglePostPage.jsx
+      PostLikedByPage.jsx
+      CommentsPage.jsx
+    stories/
+      StoriesViewer.jsx
+      StoriesArchivePage.jsx
+      CreateHighlightPage.jsx
+    settings/
+      SettingsPage.jsx
+      PrivacySettingsPage.jsx
+      SecuritySettingsPage.jsx
+      NotificationSettingsPage.jsx
+      PaymentsPage.jsx
+      HelpPage.jsx
+      BlockedAccountsPage.jsx
+      LoginActivityPage.jsx
+      CloseAccountPage.jsx
+    live/
+      LivePage.jsx
+    shop/
+      ShopPage.jsx
+    error/
+      NotFoundPage.jsx
+      SuspendedPage.jsx
+
+  components/
+    layout/
+      Sidebar.jsx
+      MobileBottomNav.jsx
+      MobileHeader.jsx
+      AppLayout.jsx
+      AuthLayout.jsx
+    feed/
+      Feed.jsx
+      PostCard.jsx
+      PostHeader.jsx
+      PostImage.jsx
+      PostCarousel.jsx
+      PostActions.jsx
+      PostLikes.jsx
+      PostCaption.jsx
+      PostComments.jsx
+      PostTimestamp.jsx
+      StoryBar.jsx
+      StoryCircle.jsx
+    stories/
+      StoriesProgressBar.jsx
+      StoriesContent.jsx
+      StoriesControls.jsx
+    explore/
+      ExploreGrid.jsx
+      MasonryGrid.jsx
+      SearchBar.jsx
+      SearchSuggestions.jsx
+    reels/
+      ReelCard.jsx
+      ReelActions.jsx
+      ReelInfo.jsx
+      ReelProgressBar.jsx
+    messages/
+      ConversationList.jsx
+      ConversationItem.jsx
+      ChatWindow.jsx
+      MessageBubble.jsx
+      MessageInput.jsx
+      OnlineIndicator.jsx
+      EmojiPicker.jsx
+    profile/
+      ProfileHeader.jsx
+      ProfileStats.jsx
+      ProfileBio.jsx
+      ProfileHighlights.jsx
+      ProfileTabs.jsx
+      ProfileGrid.jsx
+      ProfileGridItem.jsx
+    notifications/
+      NotificationItem.jsx
+      NotificationGroup.jsx
+    post/
+      PostModal.jsx
+      CommentItem.jsx
+      CommentInput.jsx
+      LikedByModal.jsx
+    settings/
+      SettingsMenu.jsx
+      SettingsToggle.jsx
+      SettingsRow.jsx
+    common/
+      Avatar.jsx
+      FollowButton.jsx
+      VerifiedBadge.jsx
+      SuggestedUsers.jsx
+      LoadingSkeleton.jsx
+      PostSkeleton.jsx
+      StorySkeleton.jsx
+      Modal.jsx
+      BottomSheet.jsx
+      Toast.jsx
+      Spinner.jsx
+      InfiniteScroll.jsx
+      ImageUpload.jsx
+      VideoPlayer.jsx
+      GradientBorder.jsx
+      ThreeDotsMenu.jsx
+      ShareModal.jsx
+      ReportModal.jsx
+
+  context/
+    AuthContext.jsx
+    ThemeContext.jsx
+    NotificationContext.jsx
+    StoryContext.jsx
+
+  hooks/
+    usePosts.js
+    useUser.js
+    useStories.js
+    useMessages.js
+    useInfiniteScroll.js
+    useMediaUpload.js
+    useDoubleTap.js
+    useDarkMode.js
+
+  data/
+    dummyData.js
+    dummyUsers.js
+    dummyPosts.js
+    dummyStories.js
+    dummyMessages.js
+    dummyNotifications.js
+    dummyReels.js
+    dummyHashtags.js
+
+  utils/
+    formatTime.js
+    formatNumber.js
+    filterImages.js
+
+  App.jsx
+  main.jsx
+
+---
+
+## PAGE-BY-PAGE SPECIFICATIONS
+
+### LOGIN PAGE (/)
+- White centered card (350px wide)
+- Instagram gradient logo at top
+- "Instagram" text in Billabong font (cursive)
+- Username/email input + Password input
+- Blue "Log in" button (full width, disabled until both filled)
+- "OR" divider with Facebook login option
+- "Forgot password?" link
+- Bottom section: "Don't have an account? Sign up"
+- App store download badges at very bottom
+
+### SIGNUP PAGE (/accounts/signup)
+- Same card layout
+- "Sign up to see photos and videos from your friends."
+- Facebook signup button (blue)
+- OR divider
+- Email/Phone, Full Name, Username, Password inputs
+- "People who use our service may have uploaded your contact info to Instagram."
+- Blue "Sign Up" button
+- Birthday step (separate screen)
+- Terms and privacy policy links
+- "Have an account? Log in" at bottom
+
+### HOME FEED (/home)
+- Left sidebar (244px): Logo, Search, Explore, Reels, Messages, Notifications, Create, Profile, More (with avatar)
+- Center (630px): Stories bar + infinite post feed
+- Right sidebar (319px): User card (avatar, username, name, Switch) + Suggested For You (5 users) + footer links (About, Help, Press, API, Jobs, Privacy, Terms, Locations, Language, Meta Verified © 2024 Instagram)
+- Stories: horizontal scroll, 8+ story circles, gradient ring = unseen
+- Each post: header (avatar 32px + username bold + location + "•" + "Follow" if not following + "···" menu), image/carousel (aspect ratio preserved), action row (Heart, Comment, Share icons left + Bookmark right), "X likes", caption (bold username + text + hashtags in blue), "View all X comments", comment preview, "Add a comment..." with emoji icon, timestamp in grey small
+
+### EXPLORE PAGE (/explore)
+- Top: search input (rounded, grey bg, magnifier icon)
+- Below search: category pills (For You, Reels, Shops, Travel, Architecture, Decor, Food, Sport)
+- Masonry 3-column grid
+- Every 3rd item is 2x2 (large featured post)
+- Hover: dark overlay with heart + comment count
+- Click: opens PostModal (full post view)
+
+### SEARCH RESULTS (/explore/search?q=)
+- Search bar active with query
+- Tabs: Top, Accounts, Tags, Places
+- Accounts tab: list of users with avatar, username, full name, followers count, follow button
+- Tags tab: list of hashtags with post count
+- Places tab: location cards
+
+### HASHTAG PAGE (/explore/tags/:hashtag)
+- Header: "#travel" large text
+- "X posts" subtext
+- Blue Follow button for hashtag
+- 3 featured large posts at top
+- Grid below
+
+### REELS PAGE (/reels)
+- Full screen, 100vh per reel
+- Snap scroll (each reel snaps to full screen)
+- Right side vertical actions: Like (count), Comment (count), Share, Save, Audio (spinning disc), More
+- Bottom left: username (bold), caption, audio name with ♫ icon
+- Top: thin progress bar (multiple segments if multiple clips)
+- Background: blurred version of video as background
+- Click center: play/pause with icon flash
+- Video: use gradient placeholder with play button (no real video needed)
+
+### SINGLE REEL (/reels/:reelId)
+- Same as reels feed but for single reel
+- Back button top left
+- Share, Embed options
+
+### MESSAGES PAGE (/messages)
+- Two panel layout (no feed sidebar)
+- Left panel (350px): 
+  - Header: username + ▼ (dropdown) + compose icon
+  - "Messages" and "Requests" tabs
+  - Search bar
+  - Conversation list: avatar, username, last message preview, time, unread blue dot
+- Right panel:
+  - Empty state (when no chat selected): DM icon + "Your Messages" + "Send a message" button
+  - OR active chat window
+
+### CHAT WINDOW (/messages/:id)
+- Top: avatar + username + name + "Active X minutes ago" + video call + info icons
+- Middle: message bubbles (blue right, grey left)
+  - Text messages
+  - Image messages
+  - Reaction emojis on hover
+  - "Seen" receipt at bottom
+- Bottom: input row (+ icon, photo, camera, mic, emoji, sticker, GIF + text input + like button)
+
+### MESSAGE REQUESTS (/messages/requests)
+- "Message Requests" header
+- "You can't message these people until you accept their request"
+- List of pending requests with Accept/Decline buttons
+
+### NOTIFICATIONS PAGE (/notifications)
+- "Notifications" header
+- "New" section (last 24h)
+- "This week" section
+- "This month" section
+- Notification types:
+  - Like: [avatar] [username] liked your photo. [post thumbnail] [time]
+  - Comment: [avatar] [username] commented: "..." [post thumbnail] [time]
+  - Follow: [avatar] [username] started following you. [Follow Back button] [time]
+  - Mention: [avatar] [username] mentioned you in a comment. [post thumbnail] [time]
+  - Tag: [avatar] [username] tagged you in a photo. [post thumbnail] [time]
+  - Live: [avatar] [username] is now live. [Watch button] [time]
+  - Story like: [avatar] [username] liked your story. [story thumbnail] [time]
+
+### PROFILE PAGE (/:username)
+- Top: profile pic (150px circle) + stats row (Posts/Followers/Following with counts)
+- Username + Edit Profile button (if own) or Follow/Message buttons (if other)
+- Full name, bio text, website link (blue), "Followed by username1, username2 and X others"
+- Story highlights (horizontal scroll circles with covers + labels)
+- Tab bar: grid icon, reels icon, tagged icon (underline on active)
+- Post grid: 3 columns, square thumbnails, multi-image icon overlay, reel icon overlay, like+comment on hover
+
+### FOLLOWERS/FOLLOWING MODAL
+- Modal overlay (or page on mobile)
+- "Followers" / "Following" header with X
+- Search bar
+- List: avatar + username + full name + Remove/Follow button
+
+### EDIT PROFILE PAGE (/profile/edit)
+- Back arrow + "Edit profile" title + Done/Save button
+- Profile photo with "Edit" overlay
+- Fields: Name, Username, Pronouns, Bio, Link, Gender (dropdown), Similar account suggestions toggle, Show account suggestions toggle
+- Switch to Professional Account section
+
+### SINGLE POST PAGE (/p/:postId)
+- Desktop: left side = image, right side = comments panel
+- Mobile: stacked (image on top, comments below)
+- Right panel: post header, scrollable comments, like count, caption, "Add a comment..." input, like + bookmark + share actions
+
+### COMMENTS PAGE (/p/:postId/comments)
+- Mobile-only layout
+- Post image thumbnail at top
+- Comments list
+- Input at bottom (sticky)
+- Reply threads (indented)
+- Heart icon on each comment
+- "Reply" link under each comment
+
+### STORIES VIEWER (/stories/:username)
+- Full screen black background
+- Top: progress bars (one per story item), avatar + username + time + close X
+- Center: story image/video
+- Left/right tap areas to go prev/next
+- Bottom: "Reply to [username]..." input + emoji + send
+- Swipe up: link sticker
+- Three dots: Report, Share, Mute
+
+### STORIES ARCHIVE (/stories/archive)
+- Grid of past stories
+- Date groupings ("Yesterday", "Last Week")
+- Click to replay
+
+### CREATE HIGHLIGHT (/stories/highlights/new)
+- Select stories to include
+- Name the highlight
+- Choose cover photo
+- Create button
+
+### SETTINGS PAGE (/accounts/settings)
+- Full page (replaces feed layout)
+- "Settings" header
+- Sections:
+  - HOW YOU USE INSTAGRAM: Account, Set up a professional account, Notifications, Privacy, Security, Ads, Supervision
+  - WHO CAN SEE YOUR CONTENT: Account Privacy toggle, Blocked accounts, Hide story and live, Location
+  - WHAT YOU SEE: Comments, Sharing and remixes, Suggested content, Explore
+  - YOUR APP AND MEDIA: Language, Contacts syncing, Saved, Archive, Activity status
+  - FOR PROFESSIONALS: Creator tools, Instagram analytics
+  - MORE INFO AND SUPPORT: Help center, Privacy center, About, Report a problem
+
+### PRIVACY SETTINGS (/accounts/settings/privacy)
+- Account Privacy toggle (Public/Private)
+- Activity Status
+- Story privacy options
+- Tag options
+- Comment filters
+- Message controls
+- Muted accounts
+
+### SECURITY SETTINGS (/accounts/settings/security)
+- Password change
+- Two-factor authentication (toggle + setup)
+- Login activity (list of devices/locations)
+- Saved login info
+- Apps and websites (authorized apps list)
+- Emails from Instagram
+
+### NOTIFICATION SETTINGS (/accounts/settings/notifications)
+- Push Notifications section
+  - Posts, Stories, Reels toggles
+  - Comments, Likes, Tags toggles
+  - Followers, Requests toggles
+  - Live toggles
+  - Direct Messages toggles
+- Email Notifications section
+- SMS Notifications section
+
+### LOGIN ACTIVITY (/accounts/settings/login-activity)
+- List of sessions: device icon + location + date
+- "This was me" / "This wasn't me" buttons
+- Log out of all sessions button
+
+### BLOCKED ACCOUNTS (/accounts/settings/blocked)
+- Search bar
+- List of blocked users with avatar + username + Unblock button
+- "X Blocked Accounts"
+
+### CHANGE PASSWORD (/accounts/password/change)
+- Current password input
+- New password input
+- Confirm new password input
+- "Change Password" button
+- "Forgot password?" link
+- "Log out of all devices" link
+
+### CLOSE/DEACTIVATE ACCOUNT (/accounts/settings/close-account)
+- "Delete Account" vs "Deactivate Account" choice
+- Reason dropdown (required)
+- Password confirmation
+- Warning message
+- Red "Delete [username]" button
+
+### LIVE PAGE (/live/:username)
+- Full screen video (black bg with gradient placeholder)
+- Username + "LIVE" badge + viewer count at top
+- Comments stream (bottom left, floating)
+- Right: heart animation burst
+- Bottom: comment input + heart button + share
+- Top right: X to close
+
+### HASHTAG PAGE (/explore/tags/:hashtag)
+- "# hashtag" in large text
+- Follow hashtag button
+- "X posts" count
+- 3 featured posts (large, 3 columns, first 2 rows)
+- Regular grid below
+
+### LOCATION PAGE (/explore/locations/:id)
+- Location name header
+- Map placeholder card
+- Recent/Top tabs
+- Posts grid
+
+### SHOP PAGE (/shop)
+- Top nav with Shop branding
+- Featured collections carousel
+- Product grid with image, name, price
+- Filter pills: All, Clothing, Accessories, Beauty, Home
+
+### 404 PAGE (/404)
+- Instagram logo
+- "Sorry, this page isn't available."
+- "The link you followed may be broken, or the page may have been removed. Go back to Instagram."
+- "Go to Instagram" button
+
+---
+
+## DESIGN TOKENS (Apply to every component)
+
+Colors:
+  --ig-primary-bg: #FFFFFF (dark: #000000)
+  --ig-secondary-bg: #FAFAFA (dark: #121212)
+  --ig-elevated-bg: #FFFFFF (dark: #1C1C1C)
+  --ig-border: #DBDBDB (dark: #262626)
+  --ig-text-primary: #000000 (dark: #F5F5F5)
+  --ig-text-secondary: #737373 (dark: #A8A8A8)
+  --ig-blue: #0095F6
+  --ig-blue-hover: #1877F2
+  --ig-red: #FF3040
+  --ig-green: #00BA88
+  --ig-story-gradient: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)
+  --ig-verified: #0095F6
+
+Typography:
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
+  font-size base: 14px
+  username: 600 weight
+  nav items: 400 weight 16px
+  counts: 600 weight
+  timestamps: 12px #737373
+
+Sizes:
+  avatar-feed: 32px
+  avatar-story: 56px
+  avatar-profile: 150px
+  avatar-message: 44px
+  avatar-notification: 44px
+  sidebar-width: 244px
+  sidebar-collapsed: 72px
+  bottom-nav: 49px
+  post-max-width: 614px
+  right-panel: 319px
+
+---
+
+## INTERACTIONS & MICRO-ANIMATIONS
+
+- Double-tap image → big red heart bursts from tap point (scale 0 → 1.2 → 0)
+- Like button → outline to filled red with bounce (scale 1 → 1.3 → 1)
+- Bookmark → outline to filled black with pop
+- Follow button → "Follow" (blue bg) → "Following" (white bg, grey border)
+- Story ring → gradient when unseen, grey #DBDBDB when seen
+- Notification badge → red dot (8px) on messages/notifications icon
+- Post carousel → swipe or arrow, dot indicators at bottom
+- Reel heart double-tap → burst of hearts float up
+- Stories → tap right 70% = next, left 30% = prev, hold = pause
+- Chat → typing indicator (three bouncing dots)
+- Loading → skeleton screens (grey shimmer animation) for posts, stories, profiles
+- Toast notifications → slide up from bottom (green for success)
+- Modal → fade in + scale from 0.95 to 1
+
+---
+
+## RESPONSIVE BREAKPOINTS
+
+Mobile (< 768px):
+- No sidebar
+- Bottom nav with 5 icons (Home, Search, Reels, Shop, Profile)
+- Full width posts
+- Modals become full screen bottom sheets
+- No right panel
+
+Tablet (768px - 1024px):
+- Icon-only sidebar (72px)
+- No right panel
+- Wider posts
+
+Desktop (1024px - 1280px):
+- Icon-only sidebar (72px)
+- Right panel visible
+
+Large Desktop (> 1280px):
+- Full sidebar with labels (244px)
+- Full right panel
+
+---
+
+## DUMMY DATA REQUIREMENTS
+
+Generate in dummyData.js:
+
+Users (20+):
+{
+  id, username, fullName, avatar (pravatar URL), bio, website,
+  followers, following, posts, isVerified, isFollowing,
+  isPrivate, hasStory, storyViewed, pronouns
+}
+
+Posts (30+):
+{
+  id, userId, images: [picsum URLs], caption, likes,
+  comments: [{id, userId, text, likes, replies: [], timestamp}],
+  timestamp, location, isLiked, isSaved, isSponsored,
+  aspectRatio (1:1 / 4:5 / 16:9)
+}
+
+Stories (15+ users, 3+ items each):
+{
+  userId, items: [{id, type, url, duration, timestamp, seen}]
+}
+
+Messages (10 conversations):
+{
+  id, userId, messages: [{id, senderId, text, timestamp, seen, type}],
+  lastMessage, lastTime, unread, isOnline
+}
+
+Notifications (30+):
+{
+  id, type, userId, postId, text, timestamp, read, postThumbnail
+}
+
+Reels (20+):
+{
+  id, userId, thumbnail (picsum), caption, likes, comments,
+  views, shares, audio, duration, isLiked, isSaved
+}
+
+Hashtags (10+):
+{
+  tag, postCount, relatedTags, topPosts
+}
+
+---
+
+## IMPLEMENTATION ORDER
+
+1. Setup Vite + React + Tailwind + Router
+2. Install all dependencies
+3. Create dummyData.js with all data
+4. Create ThemeContext + AuthContext
+5. Build AppLayout (Sidebar + MobileNav + Header)
+6. Build Auth pages (Login, Signup, OTP, Forgot Password)
+7. Build Home Feed (StoryBar + PostCard complete)
+8. Build Explore + Search + Hashtag + Location pages
+9. Build Reels page (full screen snap)
+10. Build Messages (list + chat window)
+11. Build Notifications page
+12. Build Profile page (own + other user)
+13. Build Edit Profile
+14. Build Single Post page + Comments page
+15. Build Stories Viewer (full screen)
+16. Build all Settings pages
+17. Build Live page + Shop page
+18. Build Create Post flow
+19. Build 404 + error pages
+20. Add all animations + interactions
+21. Add dark mode throughout
+22. Test responsive on all breakpoints
+
+Every page must be 100% complete. No empty shells. Pixel-perfect match to real Instagram.
